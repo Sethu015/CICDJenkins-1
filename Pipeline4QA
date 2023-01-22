@@ -2,14 +2,14 @@ pipeline {
     agent none //each stage should have its own agent section
 	environment {
         registry = "sethuraman015/mysmartapp"
-        img = "$registry" + ":${UPSTREAM_NUMBER}"
+        img = "$registry" + ":${env.BUILD_ID}"
 	   // img = "$registry" + ":latest"
      //   registryCredential = 'docker-hub-login'
     }
     stages {
         stage('Deploy-Run Application') {
             agent {
-                label 'agentlinux'
+                label 'agent-linux18'
             }
             steps {
                 script {
